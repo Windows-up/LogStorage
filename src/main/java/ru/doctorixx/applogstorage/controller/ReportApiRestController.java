@@ -2,37 +2,28 @@ package ru.doctorixx.applogstorage.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.doctorixx.applogstorage.domain.LogReport;
 import ru.doctorixx.applogstorage.model.CountReportsCount;
 import ru.doctorixx.applogstorage.model.LogReportModel;
-import ru.doctorixx.applogstorage.repo.ReportsRepo;
-
-import java.time.LocalDateTime;
+import ru.doctorixx.applogstorage.service.ReportService;
 
 @RestController
 @RequestMapping("/api/reports")
 public class ReportApiRestController {
-
-    final ReportsRepo reportsRepository;
+    final ReportService reportService;
 
     @Autowired
-    public ReportApiRestController(ReportsRepo reportsRepository) {
-        this.reportsRepository = reportsRepository;
+    public ReportApiRestController(ReportService reportService) {
+        this.reportService = reportService;
     }
 
     @PostMapping
     public String add(@RequestBody LogReportModel logReportModel) {
-        LogReport logReport = logReportModel.toDomain();
-        logReport.setDatetime(LocalDateTime.now());
-        reportsRepository.save(logReport);
+        reportService.addFromModel(logReportModel);
         return "OK";
     }
 
     @GetMapping
     public CountReportsCount count() {
-        return new CountReportsCount(
-                reportsRepository.countLogReportsBySolved(true),
-                reportsRepository.countLogReportsBySolved(false)
-        );
+        return reportService.getReportsCountWithStats();
     }
 }
