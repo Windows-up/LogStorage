@@ -27,8 +27,15 @@ public class AdminPanelController {
 
     @GetMapping
     public String index(Model model) {
-        Iterable<LogReport> reports = reportsRepository.findAllByOrderByDatetimeAsc();
+        Iterable<LogReport> reports = reportsRepository.findAllBySolvedOrderByDatetimeAsc(false);
         model.addAttribute("reports", reports);
+        return "panel";
+    }
+    @GetMapping("/solved")
+    public String index_solved(Model model) {
+        Iterable<LogReport> reports = reportsRepository.findAllBySolvedOrderByDatetimeAsc(true);
+        model.addAttribute("reports", reports);
+        model.addAttribute("solved", true);
         return "panel";
     }
 

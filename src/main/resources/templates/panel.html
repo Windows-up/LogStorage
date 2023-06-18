@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
     <title>LogStorage</title>
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/jumbotron/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -23,30 +23,27 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="#" style="color: rgba(0, 255, 106, 0.616)">LogStorage</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/problems">New</a>
+                    <a class="nav-link" aria-current="page" href="/panel">New</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/stats">Solved</a>
+                    <a class="nav-link" href="/panel/solved">Solved</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/sends" tabindex="-1">Archive</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/sends" tabindex="-1">Settings</a>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="btn btn-danger">Sign out</button>
+                    </form>
                 </li>
             </ul>
 
         </div>
     </div>
 </nav>
-
 
 
 <main style="background-color: #a0b89d; min-height: 94vh;">
@@ -59,7 +56,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="jumbotron bg-light table-bordered table-hover p-3">
-                        <h4>Reports</h4>
+                        <h4>Reports </h4>
+                        <p th:if="${solved}">(Solved)</p>
                         <p></p>
                         <div class="table-responsive">
                             <table class="table table-striped">
