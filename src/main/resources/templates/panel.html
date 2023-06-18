@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>LogStorage</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/jumbotron/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: rgba(0, 255, 106, 0.616)">LogStorage</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/problems">New</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stats">Solved</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/sends" tabindex="-1">Archive</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/sends" tabindex="-1">Settings</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+<main style="background-color: #a0b89d; min-height: 94vh;">
+
+    <body>
+        <div class="container ">
+            <div class="row">
+                <div class="col" style="min-height: 50px;"></div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="jumbotron bg-light table-bordered table-hover p-3">
+                        <h4>Reports</h4>
+                        <p></p>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Version</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="report: ${reports}">
+                                        <td th:text="${report.name}">Unknown report</td>
+                                        <td th:text="${report.datetime}">18:15 26.03.2023</td>
+                                        <td th:text="${report.version}">1.15</td>
+                                        <td><a th:href="@{'/panel/report/' + ${report.id} }">Check</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</main>
+
+
+
+
+</html>

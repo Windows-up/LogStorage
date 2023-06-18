@@ -6,4 +6,7 @@ import ru.doctorixx.applogstorage.domain.LogReport;
 
 @Repository
 public interface ReportsRepo extends CrudRepository<LogReport, Long> {
+    Long countLogReportsBySolved(boolean solved);
+
+    Iterable<LogReport> findAllByOrderByDatetimeAsc();
 }

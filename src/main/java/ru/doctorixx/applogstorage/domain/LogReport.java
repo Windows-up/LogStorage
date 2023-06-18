@@ -1,9 +1,6 @@
 package ru.doctorixx.applogstorage.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -15,6 +12,9 @@ public class LogReport {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String version;
+    @Column(columnDefinition = "TEXT")
     private String report;
     private LocalDateTime datetime;
+    private boolean solved;
+    private String name = "Unknown problem";
 }
