@@ -26,3 +26,6 @@ spring.datasource.password=admin
 spring.jpa.hibernate.ddl-auto=update
 ```
 - 2  Run app with maven
+
+- Docker:
+coming soon
